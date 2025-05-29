@@ -15,18 +15,32 @@
 <body>
 	<!----------- Hero section start ---------------->
 	<section class="hero">
+		<nav>
+				<li>
+					<a href="#about">Біз туралы</a>
+				</li>
+				<li>
+					<a href="#category">Курс түрлері</a>
+				</li>
+				<li>
+					<a href="">Жетістіктер</a>
+				</li>
+				<li>
+					<a href="">Пікірлер</a>
+				</li>
+		</nav>
 		<div class="container">
 			<div class="hero-content">
 				<h2 class="heading white">
-					Learn from the Experts <br>
-					Anytime, Anywhere.
+					<span style="font-weight: 700;">Үш сала бір бағдарлама!</span><br>
+					Болашақ мамандар осында қалыптасады
 				</h2>
 				<p class="para-line white">
-					Lorem Ipsum is simply dummied text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+					IT, Дизайн және Маркетинг әлеміне жолыңызды бізбен бірге бастаңыз
 				</p>
 				<button class="btn btn-white">
 					<a href="checkout.html">
-						Get Started Now &nbsp; <ion-icon name="caret-forward-outline"></ion-icon>
+						Ортаға қосылу &nbsp; <ion-icon name="caret-forward-outline"></ion-icon>
 					</a>
 				</button>
 			</div>
@@ -36,25 +50,25 @@
 
 
 	<!----------- About section start ------------->
-	<section class="about">
+	<section class="about" id="about">
 		<div class="container">
 			<div class="row">
 				<div class="col">
 					<h2 class="heading">
-						Change is the end result of all true learning
+						Amjilt Cyber Academy туралы
 					</h2>
 					<p class="para-line">
-						Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+						Amjilt Cyber Academy — Қазақстандағы қазақ тілінде IT мамандандыруға негізделген алғашқы оқу орталығы. Біз 4 жылдан астам уақыт бойы ақпараттық технологиялар саласында сапалы білім беріп, мыңдаған жастарға жаңа мүмкіндіктер есігін ашып келеміз.
 					</p>
 					<button class="btn border-btn">
-						<a href="checkout.html">
-							Get all certified courses 
+						<a href="#category">
+							Курстарға шолу 
 							<ion-icon name="chevron-forward-outline"></ion-icon>
 						</a>
 					</button>
 				</div>
 				<div class="col">
-					<img src="img/course-about.jpg" alt="course about" class="about-img">
+					<img src="img/team.jpg" style="object-fit: cover;" height="500px" alt="course about" class="about-img">
 				</div>
 			</div>
 		</div>
@@ -63,10 +77,10 @@
 
 
 	<!----------- Category section start ------------>
-	<section class="category">
+	<section class="category" id="category">
 		<div class="container">
 			<h2 class="heading">
-				Course Categories
+				Курс түрлері
 			</h2>
 			<p class="para-line">
 				Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
@@ -74,66 +88,73 @@
 
 			<div class="category-row">
 				<div class="category-card">
+					<ion-icon name="laptop-outline" class="category-icon"></ion-icon>
+					<h2 class="category-name">FullStack</h2>
+					<p class="para-line category-course">
+						Веб-бағдарламашы
+					</p>
+				</div>
+
+				<div class="category-card">
 					<ion-icon name="color-palette-outline" class="category-icon"></ion-icon>
 					<h2 class="category-name">Graphic Design</h2>
 					<p class="para-line category-course">
-						22 Courses
+						Графикалық дизайн
 					</p>
 				</div>
 			
 				<div class="category-card">
-					<ion-icon name="pencil-outline" class="category-icon"></ion-icon>
-					<h2 class="category-name">Content Writing</h2>
+					<ion-icon name="megaphone-outline" class="category-icon"></ion-icon>
+					<h2 class="category-name">Digital Marketing</h2>
 					<p class="para-line category-course">
-						22 Courses
+						Цифрлық маркетинг
 					</p>
 				</div>
 			
 				<div class="category-card">
-					<ion-icon name="briefcase-outline" class="category-icon"></ion-icon>
-					<h2 class="category-name">Business</h2>
+					<ion-icon name="language-outline" class="category-icon"></ion-icon>
+					<h2 class="category-name">English</h2>
 					<p class="para-line category-course">
-						22 Courses
+						Ағылшын тілі
 					</p>
 				</div>
 			
 				<div class="category-card">
-					<ion-icon name="analytics-outline" class="category-icon"></ion-icon>
-					<h2 class="category-name">Marketing</h2>
+					<ion-icon name="language-outline" class="category-icon"></ion-icon>
+					<h2 class="category-name">English</h2>
 					<p class="para-line category-course">
-						22 Courses
+						Ағылшын тілі
 					</p>
 				</div>
 			
 				<div class="category-card">
-					<ion-icon name="planet-outline" class="category-icon"></ion-icon>
-					<h2 class="category-name">Technology</h2>
+					<ion-icon name="language-outline" class="category-icon"></ion-icon>
+					<h2 class="category-name">English</h2>
 					<p class="para-line category-course">
-						22 Courses
+						Ағылшын тілі
 					</p>
 				</div>
 			
 				<div class="category-card">
-					<ion-icon name="people-outline" class="category-icon"></ion-icon>
-					<h2 class="category-name">HR & Leadership</h2>
+					<ion-icon name="hardware-chip-outline" class="category-icon"></ion-icon>
+					<h2 class="category-name">AI</h2>
 					<p class="para-line category-course">
-						22 Courses
+						Жасанды Интеллект
 					</p>
 				</div>
 			
 				<div class="category-card">
-					<ion-icon name="person-outline" class="category-icon"></ion-icon>
-					<h2 class="category-name">Enterpreneurship</h2>
+					<ion-icon name="hardware-chip-outline" class="category-icon"></ion-icon>
+					<h2 class="category-name">AI</h2>
 					<p class="para-line category-course">
-						22 Courses
+						Жасанды Интеллект
 					</p>
 				</div>
-			
 				<div class="category-card">
-					<ion-icon name="pie-chart-outline" class="category-icon"></ion-icon>
-					<h2 class="category-name">Leadership</h2>
+					<ion-icon name="hardware-chip-outline" class="category-icon"></ion-icon>
+					<h2 class="category-name">AI</h2>
 					<p class="para-line category-course">
-						22 Courses
+						Жасанды Интеллект
 					</p>
 				</div>
 			</div>
@@ -150,7 +171,7 @@
 					<img src="img/course-facility.png" alt="" class="facility-img">
 				</div>
 				<div class="col">
-					<h2 class="heading">Our Facilities</h2>
+					<h2 class="heading">Оқыту жүйесі</h2>
 					<p class="para-line">
 						Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
 					</p>
@@ -159,7 +180,7 @@
 							<ion-icon name="ribbon-outline" class="facility-icon"></ion-icon>
 							<div class="facility-content">
 								<h2 class="facility-heading">
-									Global Certified
+									PBL - жобаға негізделген үйрету жүйесі
 								</h2>
 								<p class="para-line facility-desc">
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.
@@ -171,7 +192,7 @@
 							<ion-icon name="library-outline" class="facility-icon"></ion-icon>
 							<div class="facility-content">
 								<h2 class="facility-heading">
-									Books & Library
+									100% практика
 								</h2>
 								<p class="para-line facility-desc">
 									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis.

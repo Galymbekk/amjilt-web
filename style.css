@@ -1,5 +1,16 @@
 /*------------ Google font -----------*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+@font-face {
+	font-family: 'Gilroy Light';
+	src: url('./fonts/Gilroy-Light.otf');
+}
+
+@font-face {
+	font-family: 'Gilroy Bold';
+	src: url('./fonts/Gilroy-ExtraBold.otf');
+}
 
 :root
 {
@@ -22,11 +33,12 @@
 html
 {
 	font-size: 16px;
+	scroll-behavior: smooth;
 }
 
 body
 {
-	font-family: 'Poppins', sans-serif;
+	font-family: "Montserrat", sans-serif;
 }
 
 img
@@ -39,7 +51,7 @@ img
 {
 	color: var(--blue-color);
 	font-size: var(---heading--font-size);
-	font-weight: 600;
+	font-weight: 400;
 }
 
 .para-line
@@ -97,23 +109,37 @@ img
 {
 	height: 100vh;
 	width: 100%;
-	background-image: url(img/course-bg.jpg);
+	background-image: url(img/bg-image.jpg);
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
 }
 
-.hero .container
+.container
 {
-	height: 100vh;
 	width: 100%;
-	padding: 1.5rem;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	text-align: center;
 	
+}
+
+nav{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 18vh;
+	list-style: none;
+	gap: 50px;
+}
+
+li a{
+	text-decoration: none;
+	color: white;
 }
 
 .hero .container .para-line
@@ -441,6 +467,7 @@ footer .container
 	.hero-content
 	{
 		max-width: 720px;
+		line-height: 30px;
 	}
 
 	/*--------------- About section -----------*/
@@ -464,7 +491,7 @@ footer .container
 	/*--------------- Category section -------------*/
 	.category .container
 	{
-		padding: 5rem 2rem;
+		padding: 5rem;
 		text-align: center;
 		background-image: url(img/category-bg-dark.png);
 		background-position: center center;
@@ -480,7 +507,7 @@ footer .container
 	.category-row
 	{
 		display: grid;
-		grid-template-columns: 1fr 1fr 1fr 1fr;
+		grid-template-columns: 1fr 1fr 1fr;
 		grid-template-rows: auto;
 		grid-gap: 2rem;
 		padding: 1rem 0;	
