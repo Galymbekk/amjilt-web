@@ -258,6 +258,49 @@ li a{
     position: relative;
     z-index: 1; /* мәзір астында қалады */
   }
+
+  .partner .container{
+	padding: 3rem;
+  }
+
+  .partner-row
+	{
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 10px;
+	}
+
+	.partner-card {
+		margin: 0 !important;
+	}
+
+  .partner-card:nth-child(4) .partner-img,
+  .partner-card:nth-child(6) .partner-img,
+  .partner-card:nth-child(7) .partner-img{
+		width: 60% !important;
+  }
+
+  .partner-card:nth-child(1) .partner-img,
+  .partner-card:nth-child(2) .partner-img,
+  .partner-card:nth-child(3) .partner-img,
+  .partner-card:nth-child(5) .partner-img{
+		width: 90% !important;
+  }
+
+  .row{
+		display: flex;
+		flex-direction: column-reverse;
+		gap: 2rem;
+   }
+
+   .about .container{
+		padding: 3rem 2rem !important;
+		margin: 0 !important;
+   }
+
+   .about svg{
+	  width: 55%;
+   }
 }
 
 /*--------------- Hero section end -----------------*/
@@ -441,12 +484,12 @@ li a{
 
 .masters-row {
   display: flex;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   gap: 20px;
-  padding: 10px 1px; /* Көлеңкелерді қимау үшін */
+  padding: 10px 1px;
   overflow-x: auto;
   scroll-behavior: smooth;
   cursor: grab;
+  scroll-snap-type: x mandatory; /* 👈 snap қосу */
 }
 
 .masters-row.dragging {
@@ -472,6 +515,10 @@ li a{
   border-radius: 20px;
   box-shadow: rgba(149, 157, 165, 0.15) 0px 8px 24px;
   transition: all 0.4s ease;
+}
+
+.master-card {
+  scroll-snap-align: center; /* 👈 әр карточка snap-қа түседі */
 }
 
 .master-card img {
@@ -670,6 +717,14 @@ li a{
   padding: 10px 1px; /* Көлеңкелерді қимау үшін */
 }
 
+.testimonial-row {
+  overflow-x: auto; /* ✅ Scroll болу үшін қажет */
+  scrollbar-width: none;
+}
+.testimonial-row::-webkit-scrollbar {
+  display: none;
+}
+
 /* ===== Пікір карталары ===== */
 .testimonial-card {
   flex: 0 0 calc(33.333% - 15px);
@@ -788,14 +843,33 @@ li a{
   }
 }
 
+@media (max-width: 992px) and (min-width: 768px) {
+  .slider-feedback-btn.prev {
+    left: 6px; /* бұрын -15px еді — оңтайлырақ еттік */
+  }
+
+  .slider-feedback-btn.next {
+    right: 6px;
+  }
+}
+
 @media (max-width: 768px) {
+   .container{
+	padding: 3rem 0;
+   }
+
   .testimonial {
     padding: 3rem 0;
+  }
+
+  .testimonial-row {
+    scroll-snap-type: x mandatory;
   }
   
   .testimonial-card {
     flex: 0 0 100%;
     margin-bottom: 1rem;
+	scroll-snap-align: start;
   }
   
   .slider-feedback-btn {
@@ -848,7 +922,7 @@ footer .container
 /*------------------------------------------------------*/
 /*--------------- Desktop screen media query --------------*/
 /*------------------------------------------------------*/
-@media screen and (min-width: 789px)
+@media screen and (min-width: 769px)
 {
 	:root
 	{

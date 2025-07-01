@@ -488,11 +488,18 @@
 		let autoSlideInterval = setInterval(slideRight, 3000);
 
 		function slideRight() {
+			const screenWidth = window.innerWidth;
+			let scrollAmount = 345;
+
+			if (screenWidth <= 768) {
+				scrollAmount = row.clientWidth; // кіші экран үшін бір картаға сай жылжиды
+			}
+
 			// Соңына жеткенін тексеру
 			if (row.scrollLeft + row.clientWidth >= row.scrollWidth - 5) {
-				row.scrollTo({ left: 0, behavior: 'smooth' }); // Басына қайта оралу
+				row.scrollTo({ left: 0, behavior: 'smooth' });
 			} else {
-				row.scrollBy({ left: 345, behavior: 'smooth' });
+				row.scrollBy({ left: scrollAmount, behavior: 'smooth' });
 			}
 		}
 
@@ -559,7 +566,7 @@
 		<div class="container">
 			<h2 class="heading heading-feedback">Пікірлер</h2>
 			<p class="para-line para-feedback">
-			Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+				Бізге сенім артқан жандардың әсерлі тәжірибесімен танысыңыз.
 			</p>
 
 			<div class="slider-feedback-container">
@@ -610,7 +617,7 @@
 					<div class="avatar-card">
 						<img src="img/Ernar-azhe.png" alt="" class="student-img">
 						<div class="info-student">
-							<h3 class="student-name">user_name</h3>
+							<h3 class="student-name">Ата-ана</h3>
 						</div>
 					</div>
 				</div>
@@ -621,7 +628,7 @@
 					<div class="avatar-card">
 						<img src="img/ata-ana2.png" alt="" class="student-img">
 						<div class="info-student">
-							<h3 class="student-name">user_name</h3>
+							<h3 class="student-name">Ата-ана</h3>
 						</div>
 					</div>
 				</div>
@@ -642,51 +649,36 @@
 		</div>
 	</section>
 	<script>
-		document.addEventListener('DOMContentLoaded', function() {
+		document.addEventListener('DOMContentLoaded', function () {
 			const feedbackRow = document.querySelector('.testimonial-row');
 			const feedbackPrevBtn = document.querySelector('.slider-feedback-btn.prev');
 			const feedbackNextBtn = document.querySelector('.slider-feedback-btn.next');
-			const feedbackCards = document.querySelectorAll('.testimonial-card');
 
-			let currentFeedbackSlide = 0;
-			const feedbackCardWidth = feedbackCards[0].offsetWidth + 20; // gap
-			let visibleFeedbackCards = Math.floor(feedbackRow.offsetWidth / feedbackCardWidth);
-			let maxFeedbackSlide = Math.max(feedbackCards.length - visibleFeedbackCards, 0);
+			let autoSlideInterval = setInterval(slideRight, 3500);
 
-			// Жылжыту
-			function moveFeedbackSlide() {
-				feedbackRow.style.transform = `translateX(-${currentFeedbackSlide * feedbackCardWidth}px)`;
-				updateFeedbackButtons();
-			}
-
-			// Батырмаларды жаңарту
-			function updateFeedbackButtons() {
-				feedbackPrevBtn.disabled = currentFeedbackSlide === 0;
-				feedbackNextBtn.disabled = currentFeedbackSlide >= maxFeedbackSlide;
-			}
-
-			// Батырмалар
-			feedbackNextBtn.addEventListener('click', () => {
-				if (currentFeedbackSlide < maxFeedbackSlide) {
-					currentFeedbackSlide++;
+			function slideRight() {
+				if (feedbackRow.scrollLeft + feedbackRow.clientWidth >= feedbackRow.scrollWidth - 5) {
+					feedbackRow.scrollTo({ left: 0, behavior: 'smooth' });
 				} else {
-					currentFeedbackSlide = 0; // басына қайту
+					feedbackRow.scrollBy({ left: feedbackRow.clientWidth, behavior: 'smooth' });
 				}
-				moveFeedbackSlide();
+			}
+
+			function slideLeft() {
+				feedbackRow.scrollBy({ left: -feedbackRow.clientWidth, behavior: 'smooth' });
+			}
+
+			feedbackNextBtn.addEventListener('click', () => {
+				slideRight();
 				resetAutoSlide();
 			});
 
 			feedbackPrevBtn.addEventListener('click', () => {
-				if (currentFeedbackSlide > 0) {
-					currentFeedbackSlide--;
-				} else {
-					currentFeedbackSlide = maxFeedbackSlide; // соңына секіріп
-				}
-				moveFeedbackSlide();
+				slideLeft();
 				resetAutoSlide();
 			});
 
-			// Drag & Touch
+			// Drag (mouse)
 			let isDown = false;
 			let startX;
 			let scrollLeft;
@@ -696,22 +688,17 @@
 				feedbackRow.classList.add('dragging');
 				startX = e.pageX;
 				scrollLeft = feedbackRow.scrollLeft;
+				clearInterval(autoSlideInterval);
+			});
+
+			document.addEventListener('mouseup', () => {
+				isDown = false;
+				feedbackRow.classList.remove('dragging');
 				resetAutoSlide();
 			});
 
-			feedbackRow.addEventListener('mouseleave', () => {
-				isDown = false;
-				feedbackRow.classList.remove('dragging');
-			});
-
-			feedbackRow.addEventListener('mouseup', () => {
-				isDown = false;
-				feedbackRow.classList.remove('dragging');
-			});
-
-			feedbackRow.addEventListener('mousemove', (e) => {
+			document.addEventListener('mousemove', (e) => {
 				if (!isDown) return;
-				e.preventDefault();
 				const x = e.pageX;
 				const walk = (x - startX) * 2;
 				feedbackRow.scrollLeft = scrollLeft - walk;
@@ -722,11 +709,12 @@
 				isDown = true;
 				startX = e.touches[0].pageX;
 				scrollLeft = feedbackRow.scrollLeft;
-				resetAutoSlide();
+				clearInterval(autoSlideInterval);
 			});
 
 			feedbackRow.addEventListener('touchend', () => {
 				isDown = false;
+				resetAutoSlide();
 			});
 
 			feedbackRow.addEventListener('touchmove', (e) => {
@@ -736,36 +724,12 @@
 				feedbackRow.scrollLeft = scrollLeft - walk;
 			});
 
-			// Автоматты слайд (loop)
-			let autoSlideInterval = setInterval(autoSlide, 3000);
-
-			function autoSlide() {
-				if (currentFeedbackSlide < maxFeedbackSlide) {
-					currentFeedbackSlide++;
-				} else {
-					currentFeedbackSlide = 0; // басына қайту
-				}
-				moveFeedbackSlide();
-			}
-
 			function resetAutoSlide() {
 				clearInterval(autoSlideInterval);
-				autoSlideInterval = setInterval(autoSlide, 3000);
+				autoSlideInterval = setInterval(slideRight, 3500);
 			}
-
-			// Адаптивтік
-			window.addEventListener('resize', () => {
-				visibleFeedbackCards = Math.floor(feedbackRow.offsetWidth / feedbackCardWidth);
-				maxFeedbackSlide = Math.max(feedbackCards.length - visibleFeedbackCards, 0);
-				currentFeedbackSlide = Math.min(currentFeedbackSlide, maxFeedbackSlide);
-				moveFeedbackSlide();
-			});
-
-			// Алғашқы күй
-			moveFeedbackSlide();
 		});
 	</script>
-
 	<!----------- Testimonial section end ----------->
 
 
