@@ -17,6 +17,8 @@
 	/*--------- Color variable ---------*/
 	--blue-color: #33467b;
 	---light--blue-color: #69788F;
+	--header-color:#ffffffea;
+	--desc-color: #ffffffba;
 
 	/*---------- Font size ------------*/
 	---heading--font-size: 1.5rem;
@@ -47,6 +49,11 @@ img
 	height: 0 auto;
 }
 
+.facility-img{
+	width: 80%;
+	height:auto;
+}
+
 .heading
 {
 	color: var(--blue-color);
@@ -54,10 +61,18 @@ img
 	font-weight: 400;
 }
 
+.heading-accomplishment{
+	color: var(--header-color);
+}
+
 .para-line
 {
 	color: var(---light--blue-color);
 	font-size: var(---paragraph--font-size);
+}
+
+.para-accomplishment{
+	color: var(--desc-color);
 }
 
 .white
@@ -182,15 +197,38 @@ li a{
 	margin: 2rem 0;
 }
 
-.category-card
-{
-	background-color: #ffffff;
-	margin: 2rem 0;
-	padding: 1rem 2rem;
-	border: none;
-	border-radius: 10px;
-	box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+.category-card {
+  /* background-color: #ffffff; */
+  margin: 2rem 0;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 10px;
 }
+
+/* Альтернативалық box-shadow нұсқасы */
+.category-col:first-child .category-card{
+  background-color:rgba(82,113,255,0.35);
+  box-shadow:
+    /* жеңіл акт лайнер көлеңке */
+    0px 1px 4px rgba(82,113,255,0.35),
+    /* кең дақылы терең көлеңке */
+    0px 6px 20px rgba(82,113,255,0.10);
+}
+
+.category-col:nth-child(2) .category-card{
+  	background-color:rgba(56,182,255,0.35);
+	box-shadow:
+    0px 1px 4px rgba(56,182,255,0.35),
+    0px 6px 20px rgba(56,182,255,0.10);
+}
+
+.category-col:last-child .category-card{
+	background-color:rgba(235,121,153,0.35);
+	box-shadow:
+    0px 1px 4px rgba(235,121,153,0.35),
+    0px 6px 20px rgba(235,121,153,0.10);
+}
+
 
 .category-icon
 {
@@ -247,7 +285,6 @@ li a{
 /*--------------- Success section start --------------*/
 .success
 {
-	margin: 4rem 0;
 	background-color: #faf8ff;
 }
 
@@ -283,37 +320,163 @@ li a{
 
 
 /*--------------- Master section start -------------*/
-.master
-{
-	margin: 4rem 0;
+/* Негізгі стильдер */
+.master {
+  /* max-width: 1200px; */
+  padding: 0 1.8rem;
+  position: relative;
+  background-image: url('./img/bg-handbook.jpg');
 }
 
-.master .container
-{
-	padding: 0 1.8rem;
-	text-align: center;
+.master .container {
+  text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.masters-row
-{
-	margin: 2rem 0;
+.slider-container {
+  position: relative;
+  width: 100%;
+  margin: 2rem 0;
 }
 
-.master-card
-{
-	margin: 1.5rem 0;
-	padding: 2rem;
-	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+.masters-row {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  gap: 20px;
+  padding: 10px 1px; /* Көлеңкелерді қимау үшін */
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  cursor: grab;
 }
 
-.master-name
-{
-	font-weight: 700;
+.masters-row.dragging {
+  cursor: grabbing;
+  user-select: none;
+  scroll-behavior: auto;
 }
 
-.master-name, .master-post
-{
-	color: var(--blue-color);
+.masters-row {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE және Edge */
+
+  /* Chrome, Safari */
+}
+.masters-row::-webkit-scrollbar {
+  display: none;
+}
+
+.master-card {
+  flex: 0 0 calc(33% - 12px);
+  background: white;
+  padding: 1.5rem;
+  border-radius: 20px;
+  box-shadow: rgba(149, 157, 165, 0.15) 0px 8px 24px;
+  transition: all 0.4s ease;
+}
+
+.master-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+}
+
+.master-name {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--blue-color);
+}
+
+.master-post {
+  color: var(--blue-color);
+  font-weight: 500;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.desc-txt {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555;
+}
+
+/* Батырмаларды сыртқа әдемі шығару */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: white;
+  color: var(--blue-color);
+  border: none;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  z-index: 20;
+  border: 1px solid rgba(74, 107, 255, 0.1);
+}
+
+.slider-btn:hover {
+  background: var(--blue-color);
+  color: white;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.slider-btn.prev {
+  left: -25px;
+}
+
+.slider-btn.next {
+  right: -25px;
+}
+
+/* Адаптивтік стильдер */
+@media (max-width: 1200px) {
+  .master-card {
+    flex: 0 0 calc(33.333% - 15px);
+  }
+}
+
+@media (max-width: 992px) {
+  .master {
+    padding: 0 1.5rem;
+  }
+  
+  .master-card {
+    flex: 0 0 calc(50% - 15px);
+  }
+  
+  .slider-btn {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .slider-btn.prev {
+    left: -15px;
+  }
+  
+  .slider-btn.next {
+    right: -15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .master-card {
+    flex: 0 0 calc(100% - 15px);
+  }
+  
+  .slider-btn {
+    display: none;
+  }
 }
 /*--------------- Master section end -------------*/
 
@@ -321,13 +484,11 @@ li a{
 /*--------------- Partner section start ----------*/
 .partner
 {
-	margin: 4rem 0;
 	background-color: #faf8ff;
 }
 
 .partner .container
 {
-	padding: 3.6rem 1.8rem;
 	text-align: center;
 }
 
@@ -344,59 +505,222 @@ li a{
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 	border: none;
 	border-radius: 8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.partner-card:nth-child(4) .partner-img,
+.partner-card:nth-child(6) .partner-img,
+.partner-card:nth-child(7) .partner-img{
+	width: 80%;
+}
+
+.partner-card:nth-child(1) .partner-img,
+.partner-card:nth-child(2) .partner-img,
+.partner-card:nth-child(3) .partner-img,
+.partner-card:nth-child(5) .partner-img{
+	width: 120%;
 }
 /*--------------- Partner section end ----------*/
 
 
 
 /*-------------- testimonial section start -------*/
-.testimonial
-{
-	margin: 4rem 0;
+/* ===== Пікірлер бөлімінің негізгі стильдері ===== */
+.testimonial {
+  background-color: #f8f9fa; /* Қоңырқай фон */
+  padding: 4rem 0;
 }
 
-.testimonial .container
-{
-	padding: 3.6rem 1.8rem;
-	text-align: center;
+.testimonial .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.8rem;
+  text-align: center;
+  position: relative;
 }
 
-.testimonial-row
-{
-	margin: 2rem 0;
+.heading-feedback {
+  font-size: 2.2rem;
+  color: var(--blue-color);
+  margin-bottom: 1rem;
+  font-weight: 700;
 }
 
-.testimonial-card
-{
-	text-align: left;
-	margin: 1.4rem 0;
-	border-radius: 10px;
-	background-color: #ffffff;
-	padding: 0.5rem 2rem 1rem 1rem;
-	box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+.para-feedback {
+  color: #555;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
-.avatar-card
-{
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	margin-top: 1rem;
+/* ===== Слайдер контейнері ===== */
+.slider-feedback-container {
+  /* position: relative; */
+  margin: 2rem 0;
+  overflow: hidden;
+  width: 100%;
 }
 
-.student-img
-{
-	max-width: 50px;
-	border: none;
-	border-radius: 50px;
-	margin-right: 0.6rem;
+.testimonial-row {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  gap: 20px;
+  padding: 10px 1px; /* Көлеңкелерді қимау үшін */
 }
 
-.student-name
-{
-	color: var(--blue-color);
-	font-size: 1.2rem;
-	font-weight: 600;
+/* ===== Пікір карталары ===== */
+.testimonial-card {
+  flex: 0 0 calc(33.333% - 15px);
+  background: white;
+  padding: 1.8rem;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  min-width: 0; /* Контенттің сығылуы үшін */
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 25px;
+}
+
+.review-line {
+  color: #444;
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+
+/* ===== Аватар бөлімі ===== */
+.avatar-card {
+  display: flex;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.student-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--blue-color);
+  margin-right: 1rem;
+}
+
+.info-student {
+  text-align: left;
+}
+
+.student-name {
+  color: var(--blue-color);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.info-student p {
+  color: #666;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* ===== Слайдер батырмалары ===== */
+.slider-feedback-btn {
+  position: absolute;
+  top: 55%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: white;
+  color: var(--blue-color);
+  border: none;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.slider-feedback-btn:hover {
+  background: var(--blue-color);
+  color: white;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.slider-feedback-btn.prev {
+  left: 0px;
+}
+
+.slider-feedback-btn.next {
+  right: 20px;
+}
+
+/* ===== Адаптивтік стильдер ===== */
+@media (max-width: 1200px) {
+  .testimonial-card {
+    flex: 0 0 calc(33.333% - 15px);
+  }
+}
+
+@media (max-width: 992px) {
+  .testimonial-card {
+    flex: 0 0 calc(50% - 15px);
+    padding: 1.5rem;
+  }
+  
+  .slider-feedback-btn {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .slider-feedback-btn.prev {
+    left: -15px;
+  }
+  
+  .slider-feedback-btn.next {
+    right: -15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .testimonial {
+    padding: 3rem 0;
+  }
+  
+  .testimonial-card {
+    flex: 0 0 100%;
+    margin-bottom: 1rem;
+  }
+  
+  .slider-feedback-btn {
+    display: none;
+  }
+  
+  .heading-feedback {
+    font-size: 1.8rem;
+  }
+  
+  .para-feedback {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .avatar-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .student-img {
+    margin-bottom: 0.5rem;
+  }
 }
 /*-------------- testimonial section end -------*/
 
@@ -404,7 +728,8 @@ li a{
 /*-------------- Footer section start -----------*/
 footer
 {
-	background-color: var(--blue-color);
+	background-image: url('./img/bg-handbook.jpg');
+	background-position: center;
 }
 
 footer .container
@@ -438,6 +763,10 @@ footer .container
 		max-width: 1180px;
 		margin: 0 auto;
 		padding: 6rem 5rem;
+	}
+
+	.category-container{
+		max-width: none;
 	}
 
 	.container .heading
@@ -487,14 +816,19 @@ footer .container
 		border-radius: 2rem;
 	}
 
+	.logo-academy{
+		width: 35%;
+	}
+
 
 	/*--------------- Category section -------------*/
 	.category .container
 	{
 		padding: 5rem;
 		text-align: center;
-		background-image: url(img/category-bg-dark.png);
+		background-image: url(img/bg-piyatno.png);
 		background-position: center center;
+		/* background-clip: border-box; */
 		background-size: cover;
 	}
 
@@ -507,10 +841,16 @@ footer .container
 	.category-row
 	{
 		display: grid;
-		grid-template-columns: 1fr 1fr 1fr;
+		grid-template-columns: repeat(3, 1fr);
 		grid-template-rows: auto;
 		grid-gap: 2rem;
 		padding: 1rem 0;	
+	}
+
+	.category-col{
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
 	}
 
 	.category-card
@@ -568,7 +908,7 @@ footer .container
 	.success-row
 	{
 		display: grid;
-		grid-template-columns: 1fr 1fr 1fr 1fr;
+		grid-template-columns: repeat(4, 1fr);
 		grid-template-rows: auto;
 		grid-gap: 1.6rem;
 	}
@@ -589,7 +929,7 @@ footer .container
 	.masters-row
 	{
 		margin: 1rem 0;
-		display: flex;
+		gap: 20px;
 	}
 
 
@@ -610,16 +950,13 @@ footer .container
 	.partner-row
 	{
 		margin: 0.5rem;
-		display: flex;
+		display: grid;
+		grid-template-columns: repeat(4, 0.3fr);
 		gap: 1rem;
 	}
 
 
 	/*----------- Testimonial section ----------*/
-	.testimonial .container
-	{
-		padding: 2rem 1rem;
-	}
 
 	.testimonial .container .para-line
 	{
@@ -630,13 +967,15 @@ footer .container
 	.testimonial-row
 	{
 		margin: 0.5rem;
-		display: flex;
 		gap: 1rem;
 	}
 
 	.testimonial-card
 	{
 		border-radius: 22px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
 	}
 
 
